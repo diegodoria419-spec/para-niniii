@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Nini 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffb6c1, #ffe6f0);
+      font-family: 'Comic Sans MS', cursive;
+      color: #800040;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-top: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+      font-size: 1.3em;
+      margin: 20px auto;
+      max-width: 800px;
+      line-height: 1.8;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .heart {
+      font-size: 50px;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mensaje {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 900px;
+      box-shadow: 0 0 15px rgba(255, 0, 100, 0.3);
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    button {
+      padding: 15px 30px;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      border-radius: 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .corazones {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .corazon {
+      position: absolute;
+      color: #ff1493;
+      animation: flotar 8s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="corazones"></div>
+
+  <h1>💗 Para mi Nini hermosa 💗</h1>
+
+  <div class="mensaje">
+    <p>Amor, en tu día especial quiero agradecerte por haber llegado a mi vida. Eres tan especial, tan linda, ¡todo!</p>
+    <p>Eres absolutamente todo lo bonito que este mundo tiene. Tu sonrisa, tu voz, tus ojitos, tu manera de ser... todo tú me hace feliz.</p>
+    <p>A veces peleamos, sí... ojalá dejáramos de hacerlo tanto. Pero mi amor por ti nunca cambia, ni cambiará. Ni en los malos días, ni en los difíciles.</p>
+    <p>Quiero estar a tu lado siempre, apoyarte, abrazarte, hacerte reír, y recordarte a diario que te amo infinitamente.</p>
+    <p>Te amo muchísimo, Nini. Con todo lo que soy. Gracias por ser tú.</p>
+    <p>💖 Te amo absolutamente infinito 💖</p>
+
+    <button onclick="document.getElementById('cancion').play()">🎵 Reproducir nuestra canción</button>
+    <audio id="cancion" src="music/sparks.mp3" preload="auto"></audio>
+  </div>
+
+  <script>
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.className = "corazon";
+      corazon.innerText = "💖";
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
+      document.querySelector(".corazones").appendChild(corazon);
+
+      setTimeout(() => {
+        corazon.remove();
+      }, 8000);
+    }
+
+    setInterval(crearCorazon, 300);
+  </script>
+</body>
+</html>
