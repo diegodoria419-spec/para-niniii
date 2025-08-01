@@ -1,161 +1,546 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Te Amo Nini 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to top right, #ffc0cb, #ffe4e1, #ffb6c1);
-      font-family: 'Comic Sans MS', cursive;
-      overflow: hidden;
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Nini, con todo mi amor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap');
 
-    h1 {
-      text-align: center;
-      margin: 60px 20px 20px;
-      font-size: 3em;
-      animation: fadeInDown 2s ease;
-    }
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #fde7f0; /* Un rosa pastel más suave */
+            color: #444;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
-    .mensaje {
-      max-width: 800px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      font-size: 1.5em;
-      line-height: 1.8;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(255, 192, 203, 0.4);
-      animation: fadeInUp 2.5s ease;
-    }
+        /* Fondo animado con corazones */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
 
-    .mensaje p {
-      margin: 20px 0;
-    }
+        .heart {
+            position: absolute;
+            list-style: none;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 155, 200, 0.2);
+            bottom: -150px;
+            animation: animate-hearts 25s linear infinite;
+        }
+        
+        .heart:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .heart:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .heart:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .heart:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .heart:nth-child(5){ left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .heart:nth-child(6){ left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+        .heart:nth-child(7){ left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .heart:nth-child(8){ left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .heart:nth-child(9){ left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+        .heart:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
 
-    .play-btn {
-      display: block;
-      margin: 30px auto;
-      background: #ff69b4;
-      color: #fff;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 40px;
-      font-size: 1.2em;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
+        @keyframes animate-hearts {
+            0%{ transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100%{ transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
 
-    .play-btn:hover {
-      background: #ff1493;
-      transform: scale(1.05);
-    }
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Animación de entrada para secciones */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
 
-    audio {
-      display: none;
-    }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: floatHeart 8s infinite ease-in;
-      opacity: 0.6;
-    }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px double #f48fb1;
+        }
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5em;
+            color: #c2185b;
+            margin: 0;
+        }
 
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
+        .typewriter-container {
+            text-align: center;
+            padding: 25px;
+            font-size: 1.6em;
+            color: #555;
+            font-style: italic;
+        }
 
-    .heart::after {
-      left: -10px;
-      top: 0;
-    }
+        .love-message {
+            text-align: justify;
+            padding: 25px 35px;
+            line-height: 1.9;
+            font-size: 1.15em;
+            background-color: #fde7f066;
+            border-left: 6px solid #f06292;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2em;
+            color: #c2185b;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .gallery .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
 
-    @keyframes floatHeart {
-      0% {
-        transform: translateY(0) rotate(45deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-800px) rotate(45deg);
-        opacity: 0;
-      }
-    }
+        .gallery .photo-grid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
 
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .gallery .photo-grid img:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 30px rgba(233, 30, 99, 0.35);
+        }
+        
+        .video-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        
+        video {
+            max-width: 48%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+        .interactive-zone {
+            text-align: center;
+            padding: 45px 25px;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .interactive-zone button {
+            font-family: 'Playfair Display', serif;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .interactive-zone button:hover {
+            background-color: #ad1457;
+            transform: translateY(-4px);
+        }
+
+        #random-message-display {
+            margin-top: 25px;
+            font-size: 1.3em;
+            color: #c2185b;
+            font-weight: bold;
+            min-height: 35px;
+            transition: all 0.3s;
+        }
+
+        /* Modales (Carta y Fotos) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.5s;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fffafb;
+            margin: 5% auto;
+            padding: 40px;
+            border: 5px solid #f8bbd0;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            position: relative;
+            text-align: center;
+        }
+        
+        #photo-modal .modal-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            max-width: 80vw;
+            max-height: 90vh;
+        }
+        
+        #photo-modal img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 15px;
+        }
+
+        .close-btn {
+            color: #fff;
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            font-size: 45px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #f48fb1;
+        }
+        
+        #letter-modal .close-btn {
+            color: #aaa;
+        }
+        #letter-modal .close-btn:hover {
+            color: #c2185b;
+        }
+        
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+        /* Controles de música */
+        #music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: #e91e63;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+        #music-control:hover {
+            transform: scale(1.1);
+        }
+
+        #fireworks-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 25px;
+            font-size: 1.1em;
+            color: #ad1457;
+            border-top: 2px dashed #f8bbd0;
+        }
+
+    </style>
 </head>
 <body>
+    
+    <div class="hearts-bg">
+        <li class="heart"></li><li class="heart"></li><li class="heart"></li><li class="heart"></li><li class="heart"></li><li class="heart"></li><li class="heart"></li><li class="heart"></li><li class="heart"></li><li class="heart"></li>
+    </div>
 
-  <h1>Para Nini, mi princesa hermosa 💖</h1>
+    <!-- IMPORTANTE: Pon tu canción en la carpeta 'audio' y llámala 'sparks.mp3' -->
+    <audio id="background-music" src="audio/sparks.mp3" loop></audio>
+    <button id="music-control">▶️</button>
 
-  <div class="mensaje">
-    <p>Amor, en tu día especial quiero darte este regalo hecho con mi alma. 💌</p>
-    <p>Gracias por llegar a mi vida como un rayo de luz. Eres alegría, ternura y amor puro. Todo lo lindo de este mundo, está en ti. 🌸</p>
-    <p>Ojalá dejáramos de pelear tanto, porque cada discusión duele, pero aún en esos momentos, mi amor por ti sigue intacto, fuerte y eterno. 🕊️</p>
-    <p>Eres especial, linda, única. Mi compañera, mi sueño, mi hogar. Cada parte de ti me hace amarte más. 💗</p>
-    <p>No hay un solo día que no agradezca por tenerte. Ni una sola noche sin pensar en ti. Mi corazón te pertenece, Nini. 💞</p>
-    <p>Te amo absolutamente infinito, con cada parte de mí, con toda mi alma. Hoy, mañana y para siempre. ✨</p>
-    <p>Te amo mucho, Nini. ❤️</p>
-  </div>
+    <canvas id="fireworks-canvas"></canvas>
 
-  <button class="play-btn" onclick="document.getElementById('musica').play()">Reproducir canción 🎵</button>
-  <audio id="musica" autoplay loop>
-    <source src="https://www.dropbox.com/s/5a6n0u3a9oz1nkf/Sparks-Coldplay.mp3?dl=1" type="audio/mpeg" />
-  </audio>
+    <div class="container">
+        <header class="fade-in-section">
+            <h1>Para ti, mi Nini</h1>
+        </header>
 
-  <script>
-    function crearCorazon() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      document.body.appendChild(heart);
+        <div class="typewriter-container fade-in-section">
+            <span id="typewriter"></span>
+        </div>
 
-      setTimeout(() => heart.remove(), 10000);
-    }
+        <div class="love-message fade-in-section">
+            <p><strong>Mi amor,</strong> en este día tan especial, y en todos los que vendrán, quiero que sepas lo increíblemente agradecido que estoy por tu llegada a mi vida. Eres la casualidad más bonita que me ha pasado. Contigo, cada momento se vuelve mágico y cada día es una nueva aventura. Eres tan especial, tan increíblemente linda... eres TODO.</p>
+            <p>Eres la luz que ilumina mis días y la calma en mis tormentas. Eres todo lo bueno y todo lo lindo de este mundo. A veces, como todas las parejas, tenemos nuestros momentos difíciles y ojalá dejáramos de pelear tanto, pero quiero que tengas una certeza inquebrantable: incluso en nuestros peores días, mi amor por ti nunca cambiará. Es una constante en mi universo.</p>
+            <p>Te amo de una manera que las palabras apenas pueden describir. Es un amor que va más allá de lo imaginable, un amor absolutamente infinito. Gracias por ser tú, por tu risa, por tu forma de ver el mundo, por cada pequeño detalle que te hace única.</p>
+            <p><strong>Te amo mucho, mi hermosa y preciosa Nini.</strong></p>
+        </div>
 
-    setInterval(crearCorazon, 300);
-  </script>
+        <section class="gallery fade-in-section">
+            <h2>Una galería para la niña más linda</h2>
+            <div class="photo-grid" id="nini-gallery">
+                <!-- Las imágenes se añadirán aquí con JavaScript -->
+            </div>
+        </section>
+        
+        <section class="videos fade-in-section">
+            <h2>Nuestros momentos en video</h2>
+            <div class="video-gallery">
+                <!-- IMPORTANTE: Pon tus videos en la carpeta 'videos' y llámalos 'video1.mp4' y 'video2.mp4' -->
+                <video src="videos/video1.mp4" controls></video>
+                <video src="videos/video2.mp4" controls></video>
+            </div>
+        </section>
+
+        <section class="interactive-zone fade-in-section">
+            <h2>Un poquito de nuestro cariño</h2>
+            <button id="kiss-button">Haz clic para un beso 💋</button>
+            <button id="letter-button">Tengo una carta secreta para ti 💌</button>
+            <button id="fireworks-button">¡Una sorpresa final! ✨</button>
+            <div id="random-message-display"></div>
+        </section>
+        
+        <footer class="fade-in-section">
+            Hecho con todo el amor del mundo, solo para ti.
+        </footer>
+    </div>
+    
+    <!-- Modales -->
+    <div id="secret-letter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-letter-modal">×</span>
+            <h2>Mi carta para ti</h2>
+            <p>Mi Nini,</p>
+            <p>Si estás leyendo esto, es porque encontraste este pequeño rincón secreto que creé solo para ti. Quería tener un lugar especial para decirte cosas que a veces, en el día a día, se me pueden olvidar expresar.</p>
+            <p>Desde que estás conmigo, mi mundo es más brillante. Me has enseñado a amar de una forma más profunda y sincera. Admiro tu fuerza, tu inteligencia, tu autenticidad y esa hermosa sonrisa que puede arreglar cualquier mal día. Cada vez que te veo, me vuelvo a enamorar como si fuera la primera vez.</p>
+            <p>Prometo cuidarte, apoyarte en tus sueños y hacerte reír todos los días. Prometo recordarte siempre lo valiosa que eres y lo mucho que significas para mí. Eres mi presente y mi futuro, mi compañera de vida y mi mejor amiga.</p>
+            <p>Gracias por existir y por elegirme a mí para compartir tu vida. No podría ser más afortunado.</p>
+            <p>Con amor infinito,<br>Tu amor.</p>
+        </div>
+    </div>
+    
+    <div id="photo-modal" class="modal">
+        <span class="close-btn" id="close-photo-modal">×</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Control de Música ---
+        const music = document.getElementById('background-music');
+        const musicControl = document.getElementById('music-control');
+        let isPlaying = false;
+        
+        musicControl.addEventListener('click', () => {
+            if (isPlaying) {
+                music.pause();
+                musicControl.innerHTML = '▶️';
+            } else {
+                music.play();
+                musicControl.innerHTML = '⏸️';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // --- Efecto de Máquina de Escribir ---
+        const typewriterElement = document.getElementById('typewriter');
+        const textToType = "Amor, en tu día especial te quiero agradecer por haber llegado a mi vida...";
+        let i = 0;
+        function type() {
+            if (i < textToType.length) {
+                typewriterElement.innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(type, 100);
+            }
+        }
+        type();
+
+        // --- Cargar Galería de Fotos y Lightbox ---
+        const gallery = document.getElementById('nini-gallery');
+        const photoModal = document.getElementById('photo-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closePhotoModal = document.getElementById('close-photo-modal');
+        const photoNames = ['foto1.jpg', 'foto2.jpg', 'foto3.jpg', 'foto4.jpg', 'foto5.jpg', 'foto6.jpg', 'foto7.jpg', 'foto8.jpg', 'foto9.jpg', 'foto10.jpg'];
+        
+        photoNames.forEach(name => {
+            const img = document.createElement('img');
+            img.src = `imagenes/${name}`;
+            img.alt = `Foto de Nini`;
+            img.addEventListener('click', () => {
+                photoModal.style.display = "block";
+                modalImage.src = img.src;
+            });
+            gallery.appendChild(img);
+        });
+
+        closePhotoModal.onclick = () => photoModal.style.display = "none";
+
+        // --- Botón de Mensajes Aleatorios ---
+        const kissButton = document.getElementById('kiss-button');
+        const messageDisplay = document.getElementById('random-message-display');
+        const messages = ["Te envío un beso gigante! 💋", "Eres lo más bonito de mi vida. ❤️", "¿Sabías que te amo infinito? ✨", "Pensando en ti... como siempre. 😊", "¡Muah! Directo a tu corazón. 😘", "Contigo todo es mejor. 💕"];
+        kissButton.addEventListener('click', () => {
+            messageDisplay.textContent = messages[Math.floor(Math.random() * messages.length)];
+        });
+
+        // --- Carta Secreta ---
+        const letterModal = document.getElementById('secret-letter-modal');
+        const letterButton = document.getElementById('letter-button');
+        const closeLetterModal = document.getElementById('close-letter-modal');
+        letterButton.onclick = () => letterModal.style.display = "block";
+        closeLetterModal.onclick = () => letterModal.style.display = "none";
+        
+        window.onclick = (event) => {
+            if (event.target == letterModal) letterModal.style.display = "none";
+            if (event.target == photoModal) photoModal.style.display = "none";
+        };
+        
+        // --- Animación de Corazones al Mover el Mouse ---
+        document.addEventListener('mousemove', function(e) {
+            let heart = document.createElement('div');
+            heart.style.position = 'absolute';
+            heart.style.pointerEvents = 'none';
+            heart.style.fontSize = '2em';
+            heart.style.color = '#e91e63';
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            heart.style.zIndex = '1002';
+            heart.style.animation = 'fall 1s linear forwards';
+            setTimeout(() => heart.remove(), 1000);
+        });
+        
+        // --- Animaciones al hacer scroll ---
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+        
+        // --- Efecto de Fuegos Artificiales (sin cambios, ya funcionaba bien) ---
+        const fireworksCanvas = document.getElementById('fireworks-canvas');
+        const fireworksButton = document.getElementById('fireworks-button');
+        fireworksButton.addEventListener('click', () => {
+                fireworksCanvas.style.display = 'block';
+                launchFireworks();
+                setTimeout(() => {
+                    fireworksCanvas.style.display = 'none';
+                }, 5000); 
+            });
+
+        const ctx = fireworksCanvas.getContext('2d');
+        let particles = [];
+
+        function launchFireworks() {
+            const x = fireworksCanvas.width / 2;
+            const y = fireworksCanvas.height;
+            const numParticles = 200;
+            const hue = Math.random() * 360;
+
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle(x, y, hue));
+            }
+        }
+
+        function Particle(x, y, hue) {
+            this.x = x; this.y = y; this.coords = [x, y]; this.angle = Math.random() * Math.PI * 2;
+            this.speed = Math.random() * 10 + 2; this.friction = 0.95; this.gravity = 1.5;
+            this.hue = Math.random() * 50 - 25 + hue; this.brightness = Math.random() * 50 + 50;
+            this.alpha = 1; this.decay = Math.random() * 0.03 + 0.015;
+        }
+
+        Particle.prototype.update = function(index) {
+            this.coords.push([this.x, this.y]); this.speed *= this.friction; this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed + this.gravity; this.alpha -= this.decay;
+            if (this.alpha <= this.decay) { particles.splice(index, 1); }
+        }
+
+        Particle.prototype.draw = function() {
+            ctx.beginPath(); ctx.moveTo(this.coords[this.coords.length - 1][0], this.coords[this.coords.length - 1][1]);
+            ctx.lineTo(this.x, this.y); ctx.strokeStyle = `hsla(${this.hue}, 100%, ${this.brightness}%, ${this.alpha})`; ctx.stroke();
+        }
+
+        function animateFireworks() {
+            requestAnimationFrame(animateFireworks);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; ctx.fillRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+            for (let i = particles.length - 1; i >= 0; i--) { particles[i].draw(); particles[i].update(i); }
+        }
+
+        function setCanvasSize() {
+            fireworksCanvas.width = window.innerWidth; fireworksCanvas.height = window.innerHeight;
+        }
+
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+        animateFireworks();
+    });
+
+    // Pequeño truco para el keyframe de los corazones que siguen al ratón
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `@keyframes fall { to { transform: translateY(100px); opacity: 0; } }`;
+    document.head.appendChild(styleSheet);
+    </script>
+
 </body>
 </html>
