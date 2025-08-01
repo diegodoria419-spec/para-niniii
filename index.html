@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Te Amo Nini 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #ffc0cb, #ffe4e1, #ffb6c1);
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 60px 20px 20px;
+      font-size: 3em;
+      animation: fadeInDown 2s ease;
+    }
+
+    .mensaje {
+      max-width: 800px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 1.5em;
+      line-height: 1.8;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.4);
+      animation: fadeInUp 2.5s ease;
+    }
+
+    .mensaje p {
+      margin: 20px 0;
+    }
+
+    .play-btn {
+      display: block;
+      margin: 30px auto;
+      background: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 40px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .play-btn:hover {
+      background: #ff1493;
+      transform: scale(1.05);
+    }
+
+    audio {
+      display: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatHeart 8s infinite ease-in;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Para Nini, mi princesa hermosa 💖</h1>
+
+  <div class="mensaje">
+    <p>Amor, en tu día especial quiero darte este regalo hecho con mi alma. 💌</p>
+    <p>Gracias por llegar a mi vida como un rayo de luz. Eres alegría, ternura y amor puro. Todo lo lindo de este mundo, está en ti. 🌸</p>
+    <p>Ojalá dejáramos de pelear tanto, porque cada discusión duele, pero aún en esos momentos, mi amor por ti sigue intacto, fuerte y eterno. 🕊️</p>
+    <p>Eres especial, linda, única. Mi compañera, mi sueño, mi hogar. Cada parte de ti me hace amarte más. 💗</p>
+    <p>No hay un solo día que no agradezca por tenerte. Ni una sola noche sin pensar en ti. Mi corazón te pertenece, Nini. 💞</p>
+    <p>Te amo absolutamente infinito, con cada parte de mí, con toda mi alma. Hoy, mañana y para siempre. ✨</p>
+    <p>Te amo mucho, Nini. ❤️</p>
+  </div>
+
+  <button class="play-btn" onclick="document.getElementById('musica').play()">Reproducir canción 🎵</button>
+  <audio id="musica" autoplay loop>
+    <source src="https://www.dropbox.com/s/5a6n0u3a9oz1nkf/Sparks-Coldplay.mp3?dl=1" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    function crearCorazon() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(crearCorazon, 300);
+  </script>
+</body>
+</html>
